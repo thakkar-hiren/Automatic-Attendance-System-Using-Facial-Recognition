@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{%block title%}
+View Attendance
+{%endblock%}
+{% block content %}
+<section class="ftco-section p-5 ">
+    <div class="container mb-5">
+        <!-- <div class="row justify-content-center">
+            <div class="col-md-4 text-center mb-2">
+                <h2 class="heading-section">Login</h2>
+            </div>
+        </div> -->
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-user-o"></span>
+              </div>
+              <h3 class="text-center mb-4">View Attendance</h3>
+                    <form action="/view_attendance/{{enrollment}}" method="POST" class="login-form">
+                        {% csrf_token%}
+                        <!-- {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %} -->
+                <div class="form-group">
+                      <!-- <input type="text" class="form-control rounded-left" name="enrollment" placeholder="Enrollment" required> -->
+                    <select name="subject" class="form-control rounded-left" id="subject">
+                        <option value=" ">----Select----</option>
+                        {% for sub in subjects %}
+                            <option value="{{sub}}">{{sub}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            <!-- <div class="form-group d-flex">
+              <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group d-md-flex">
+                <div class="w-50">
+                    <label class="checkbox-wrap checkbox-primary">Remember Me
+                                  <input type="checkbox" checked>
+                                  <span class="checkmark"></span>
+                                </label>
+                </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Forgot Password</a>
+                            </div>
+           </div>
+           <a href="/student_register"><h6 class="text-center">Create Account?</h6></a> -->
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">View Attendance</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+        {% if va == True %}
+            <div class="container my-auto">
+                <div class="text-center  my-auto mb-2">
+                    <h2>View Attendance</h2>
+                </div>
+                <table class="table table-striped" style="font-size: 16px;">
+                    <thead class="thead-dark" style="background-color: #884d8b;">
+                      <tr>
+                        <th scope="col">Enrollment</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Lab/Class</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Period</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list %}
+                      <tr>
+                        <th scope="row">{{ enr }}</th>
+                        <td>{{subject}}</td>
+                        <td>{{branch}}</td>
+                        <td>{{semester}}</td>
+                        <td>{{lab_or_class}}</td>
+                        <td>{{status}}</td>
+                        <td>{{date_today}}</td>
+                        <td>{{period}}</td>
+                      </tr>
+                    {%endfor%}
+                    </tbody>
+                  </table>
+            </div>
+    {%endif%}
+</section>    
+{%endblock%}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+</head>
+<body>
+    <center>
+        <h2 style="font-family: sans-serif;">View Attendance</h2>
+        <br>
+        <form action="/view_attendance/{{enrollment}}" method="POST">
+            {% csrf_token %}
+            <label for="subject">Subject</label>&nbsp;
+            <select name="subject" id="subject">
+                <option value=" ">----Select----</option>
+                {% for sub in subjects %}
+                    <option value="{{sub}}">{{sub}}</option>
+                {%endfor%}
+            </select>&nbsp;
+            <input type="submit" name="submit" value="Search">
+        </form><br><br>
+        {% if va == True %}    
+        <h1 style="font-family: sans-serif;">Attendance</h1>
+            <table style="border:12pt;">
+                <thead>
+                    <tr>
+                        <th>Enrollment</th>
+                        <th>Subject</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Lab/Class</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list %}
+                    <tr>
+                        <td>{{ enr }}</td>
+                        <td>{{ subject }}</td>
+                        <td>{{ branch }}</td>
+                        <td>{{ semester }}</td>
+                        <td>{{ lab_or_class }}</td>
+                        <td>{{ status }}</td>
+                        <td>{{ date_today }}</td>
+                        <td>{{ period }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}    
+    </center>
+</body>
+</html> -->

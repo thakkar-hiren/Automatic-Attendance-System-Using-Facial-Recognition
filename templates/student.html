@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{%block title%}
+Student
+{%endblock%}
+{% block content %}
+<div class="container" style="padding-top: 100px;">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Subject Details</h1>
+    </div>
+    <table class="table table-striped w-50 m-auto text-center" style="font-size: 16px;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Subject</th>
+            <th scope="col">Faculty Co-ordinator</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for sub,faculty in zip_list %}
+            <tr>
+                <td>{{sub}}</td>
+                <td>{{faculty}}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+<!-- <div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="text-center mb-2">
+                <h1 class="display-4">Subject Details</h1>
+            </div>
+            {% if message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+            {%endif%}
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">Subject</th>
+                                <th class="cell100 column5">Faculty Co-ordinator</th>
+                            --> <!-- --><!-- <th class="cell100 column3">Semester</th>
+                                <th class="cell100 column4">Branch</th>
+                                <th class="cell100 column5">Date</th>
+                                <th class="cell100 column6">Period</th> 
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {%for sub,faculty in zip_list %}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{ sub }}</td>
+                                <td class="cell100 column5">{{ faculty }}</td>
+                            -->     <!-- <td class="cell100 column3">{{semester}}</td>
+                                <td class="cell100 column4">{{ branch }}</td>
+                                <td class="cell100 column5">{{ date }}</td>
+                                <td class="cell100 column6">{{ period }}</td> 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --> 
+
+
+{%endblock%}
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="font-family: sans-serif;"> Hello, {{enrollment}}</h1>
+    <a href="view_attendance/{{enrollment}}"><h2 style="font-family: sans-serif;">View Attendance</h2></a>
+</body>
+</html> -->

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{%block title%}
+Login | Faculty
+{%endblock%}
+{% block content %}
+<section class="ftco-section  p-5 ">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-2 ">
+                <h2 class="heading-section pt-4">Login</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                  <i class="fa fa-user-o" style="color: white;"></i>
+              </div>
+              <h3 class="text-center mb-4">Have an account?</h3>
+                    <form action="/faculty" method="POST" class="login-form">
+                        {% csrf_token%}
+                        {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% elif message_success %}
+                        <div class="alert alert-success" role="alert">
+                            {{message_success}}
+                        </div>
+                        {% endif %}
+                  <div class="form-group">
+                      <input type="text" class="form-control rounded-left" name="facultyid" placeholder="Faculty ID" required>
+                  </div>
+            <div class="form-group d-flex">
+              <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group d-md-flex">
+                <div class="w-50">
+                    <label class="checkbox-wrap checkbox-primary">Remember Me
+                                  <input type="checkbox" checked>
+                                  <span class="checkmark"></span>
+                                </label>
+                </div>
+                <div class="w-50 text-md-right">
+                    <a href="{% url 'forgot_faculty'%}">Forgot Password</a>
+                </div>
+            </div>
+           <a href="/faculty_register"><h6 class="text-center">Create Account?</h6></a>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Get Started</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+<!---
+<center>
+        <h1>Login Form</h1><br><br>
+        {% if error == True %}
+            <h2>{{message}}</h2><br><br>
+        {% endif %}
+        <form action="/faculty" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="FacultyID">Faculty ID</label></td>
+                    <td><input type="text" name="facultyid" placeholder="Enter Faculty ID"></td>
+                </tr>
+                <tr>
+                    <td><label for="Password">Password</label></td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+            </table><br>
+            <input type="submit" value="Login">
+        </form>
+    </center>
+-->

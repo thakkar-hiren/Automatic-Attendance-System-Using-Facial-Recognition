@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit | GPERI Attendance</title>
+</head>
+<body>
+    <center>
+        <h1>
+            Edit
+        </h1>
+        <form action='/edit' method='POST'>
+        {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list%}    
+            <label>Enrollment</label>
+            <input type="text" name='enrollment' value="{{enr}}" readonly><br><br>
+            <label>Subject</label>
+            <input type="text" name='subject' value="{{subject}}" readonly><br><br>
+            <label>Branch</label>
+            <input type="text" name='branch' value="{{branch}}" readonly><br><br>
+            <label>Semseter</label>
+            <input type="text" name='semester' value="{{semester}}" readonly><br><br>
+            <label>Period</label>
+            <input type="text" name='period' value="{{period}}" readonly><br><br>
+            <label>Lab/Lecture</label>
+            <select class="form-control" name="lab_or_class">
+                <option>Lecture</option>
+                <option>Lab</option>
+            </select><br><br>
+            <label>Status</label>
+            <select class="form-control" name="status">
+                  <option>Present</option>
+                  <option>Absent</option>
+            </select><br><br>
+        {% endfor %}
+            <input type="submit" value="Update">
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,82 @@
+{% extends "base.html"%}
+{%block title%}
+Admin | Student
+{%endblock%}
+{% block content %}
+<section class="ftco-section p-5 ">
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                    <i class="fa fa-search" aria-hidden="true" style="color: white;"></i>
+              </div>
+              <h3 class="text-center mb-4">Search Student</h3>
+                    <form action="/administrator_student" method="POST" class="login-form">
+                        {% csrf_token%}
+                        <!-- {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %} -->
+                <div class="form-group">
+                    <select name="branch" class="form-control rounded-left" id="branch" required>
+                        <option value=" ">----Select Branch----</option>
+                            <option value="CSE">CSE</option>
+                            <option value="CE">CE</option>
+                            <option value="ME">ME</option>
+                            <option value="EE">EE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="semester" class="form-control rounded-left" id="semester" required>
+                        <option value=" ">----Select Semester----</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                    </select>
+                </div>
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Search Student</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+    {% if student == True %}
+            <div class="container">
+                <div class="text-center  my-auto mb-2">
+                    <h3>Student Details</h3>
+                </div>
+                <table class="table table-striped text-center" style="font-size: 16px;">
+                    <thead class="thead-dark" style="background-color: #884d8b;">
+                      <tr>
+                        <th scope="col">Enrollment</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Semester</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for enr,fname,lname,email,semester in zip_list %}
+                      <tr>
+                        <th scope="row">{{ enr }}</th>
+                        <td>{{fname}}</td>
+                        <td>{{lname}}</td>
+                        <td>{{email}}</td>
+                        <td>{{semester}}</td>
+                      </tr>
+                    {%endfor%}
+                    </tbody>
+                  </table>
+            </div>
+    {%endif%}
+</section>    
+{% endblock %}

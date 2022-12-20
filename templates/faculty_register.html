@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{%block title%}
+Register | Faculty
+{%endblock%}
+{% block content %}
+<section class="ftco-section p-5 ">
+    <div class="container p-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center mb-2">
+                <h2 class="heading-section">Register</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-user-o"></span>
+              </div>
+              <h3 class="text-center mb-4">Not Registered?</h3>
+                    <form action="/faculty_register" method="POST" class="login-form">
+                        {% csrf_token%}
+                        {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                  <div class="form-group">
+                      <input type="text" class="form-control rounded-left" name="facultyid" placeholder="FacultyID             e.g., HIR_07" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control rounded-left" name="email" placeholder="Email" required>
+                </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control rounded-left" name="facultyname" placeholder="Faculty Name    e.g., Hiren Thakkar" required>
+                </div>
+                <div class="form-group">
+                    <select name="branch" class="form-control rounded-left" required>
+                        <option value="" disabled selected>Choose Branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                    </select>
+                </div>
+            <div class="form-group d-flex">
+              <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+            </div>
+           <a href="/faculty_login"><h6 class="text-center">Already registered?</h6></a>
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Register</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <center>
+    <h1 style="font-family:sans-serif">Faculty Registration Form</h1><br>
+    {%if message%}
+      <h3>{{message}}</h3><br>
+    {% endif %}
+    <form action="/faculty_register" method="POST">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td><label for="FacultyID">Faculty ID</label>&nbsp;</td>
+          <td><input type="text" name="facultyid" placeholder="e.g.,HIR_07 HIR(first 3 letters of name) 07-BranchCode"></td>
+        </tr>
+      <tr>
+        <td><label>Faculty Name</label>&nbsp;</td>
+        <td> <input type="text" name="facultyname" placeholder="e.g., Hiren Thakkar"><</td>
+      </tr>
+      <tr>
+        <td><label for="Branch">Branch</label>&nbsp;</td>
+        <td><select name="branch">
+        <option value="CSE">CSE</option>
+        <option value="CE">CE</option>
+        <option value="EE">EE</option>
+        <option value="ME">ME</option>
+      </select></td></tr>
+      <tr>
+        <td><label for="Password">Password</label>&nbsp;</td>
+        <td><input type="password" name="password"></td>
+      </tr>
+      </table><br>
+      <input type="submit" value="Register">
+    </form>
+  </center>
+</body>
+</html>
+-->

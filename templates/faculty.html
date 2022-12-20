@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{%block title%}
+Faculty
+{%endblock%}
+{% block content %}
+{% if ta == True %}
+<div class="container" style="padding-top: 100px;">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Today's Attendance</h1>
+    </div>
+    {% if message %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    {%endif%}
+    <table class="table table-striped text-center" style="font-size: 16px;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Enrollment</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Date</th>
+            <th scope="col">Period</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for name in names %}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{subject}}</td>
+                <td>{{semester}}</td>
+                <td>{{branch}}</td>
+                <td>{{date}}</td>
+                <td>{{period}}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%else%}
+<div class="container" style="padding-top: 100px;">
+    <div class="text-center mb-4">
+        <h1>Subject Details</h1>
+    </div>
+    <table class="table table-striped w-50 m-auto text-center" style="font-size: 16px;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Subject</th>
+            <th scope="col">Semester</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for sub,sem in zip_list %}
+            <tr>
+                <td>{{sub}}</td>
+                <td>{{sem}}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%endif%}
+{% endblock %}
+<!-- <div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="text-center mb-2">
+                <h1 class="display-4">Subject Details</h1>
+            </div>
+            {% if message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+            {%endif%}
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">Subject</th>
+                                <th class="cell100 column5">Semester</th>
+                                 <th class="cell100 column3">Semester</th>
+                                <th class="cell100 column4">Branch</th>
+                                <th class="cell100 column5">Date</th>
+                                <th class="cell100 column6">Period</th> 
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {%for sub,sem in zip_list %}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{ sub }}</td>
+                                <td class="cell100 column5">{{ sem }}</td>
+                                <td class="cell100 column3">{{semester}}</td>
+                                <td class="cell100 column4">{{ branch }}</td>
+                                <td class="cell100 column5">{{ date }}</td>
+                                <td class="cell100 column6">{{ period }}</td> 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="text-center mb-2">
+                <h1 class="display-4">Today's Attendance</h1>
+            </div>
+            {% if message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+            {%endif%}
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">Enrollment</th>
+                                <th class="cell100 column2">Subject</th>
+                                <th class="cell100 column3">Semester</th>
+                                <th class="cell100 column4">Branch</th>
+                                <th class="cell100 column5">Date</th>
+                                <th class="cell100 column6">Period</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {%for name in names %}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{ name }}</td>
+                                <td class="cell100 column2">{{ subject }}</td>
+                                <td class="cell100 column3">{{semester}}</td>
+                                <td class="cell100 column4">{{ branch }}</td>
+                                <td class="cell100 column5">{{ date }}</td>
+                                <td class="cell100 column6">{{ period }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

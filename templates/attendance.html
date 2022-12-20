@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Enrollment</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Date</th>
+            <th scope="col">Period</th>
+          </tr>
+        </thead>
+        <tbody>
+        {%for name in names %}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ subject }}</td>
+            <td>{{semester}}</td>
+            <td>{{ branch }}</td>
+            <td>{{ date }}</td>
+            <td>{{ period }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{%block title%}
+Forgot Password
+{%endblock%}
+{% block content %}
+<div class="container p-auto m-auto">
+    <div class="row justify-content-center m-auto p-auto">
+        <div class="col-md-6 text-center mb-2 ">
+            <h2 class="heading-section">Forgot Password</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center m-auto">
+        <div class="col-md-6 col-lg-5">
+            <div class="login-wrap p-4 p-md-5">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <i class="fa fa-user-o" style="color: white;"></i>
+                </div>
+                <h3 class="text-center mb-4">Forgot Password?</h3>
+                <form action="/forgot_student" method="POST" class="login-form">
+                    {% csrf_token%}
+                    {% if message_error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message_error}}
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <input type="email" class="form-control rounded-left" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Get Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

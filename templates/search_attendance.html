@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{%block title%}
+Search Attendance
+{%endblock%}
+{% block content %}
+<section class="ftco-section p-5 ">
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                    <i class="fa fa-search" aria-hidden="true" style="color: white;"></i>
+              </div>
+              <h3 class="text-center mb-4">Search Attendance</h3>
+                    <form action="/search_attendance/{{FacultyName}}" method="POST" class="login-form">
+                        {% csrf_token%}
+                        <!-- {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %} -->
+                <div class="form-group">
+                    <select name="subject" class="form-control rounded-left" id="subject" required>
+                        <option value=" ">----Select Subject----</option>
+                        {% for sub in subject %}
+                            <option value="{{sub}}">{{sub}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control rounded-left" name="date">
+                </div>
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Search Attendance</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+    {% if search == True %}
+            <div class="container">
+                <div class="text-center  my-auto mb-2">
+                    <h3>Attendance</h3>
+                </div>
+                <table class="table table-striped text-center" style="font-size: 16px;">
+                    <thead class="thead-dark" style="background-color: #884d8b;">
+                      <tr>
+                        <th scope="col">Enrollment</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Lab/Class</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Period</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for enr, subject, semester, lab_or_class, status, period in zip_list %}
+                      <tr>
+                        <th scope="row">{{ enr }}</th>
+                        <td>{{subject}}</td>
+                        <td>{{semester}}</td>
+                        <td>{{lab_or_class}}</td>
+                        <td>{{status}}</td>
+                        <td>{{period}}</td>
+                      </tr>
+                    {%endfor%}
+                    </tbody>
+                  </table>
+            </div>
+    {%endif%}
+</section>    
+{% endblock %}

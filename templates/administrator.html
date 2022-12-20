@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{%block title%}
+Admin
+{%endblock%}
+{% block content %}
+<div class="container" style="padding-top: 100px;">
+    <div class="text-center mb-4">
+        <h1>Subject Allocation Details</h1>
+    </div>
+    <table class="table table-striped w-50 m-auto text-center">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Subject</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Faculty_Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for subject,Branch,Semester,Faculty_Name in zip_list %}
+            <tr>
+                <td>{{ subject }}</td>
+                <td>{{ Semester }}</td>
+                <td>{{ Branch }}</td>
+                <td>{{ Faculty_Name }}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

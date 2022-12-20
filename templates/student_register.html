@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{%block title%}
+Register | Student
+{%endblock%}
+{% block content %}
+<section class="ftco-section p-5 ">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center mb-2">
+                <h2 class="heading-section">Register</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="fa fa-user-o"></span>
+              </div>
+              <h3 class="text-center mb-4">Not Registered?</h3>
+                    <form action="/student_register" method="POST" class="login-form">
+                        {% csrf_token%}
+                        {% if error == True %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                  <div class="form-group">
+                      <input type="text" class="form-control rounded-left" name="enrollment" placeholder="Enrollment" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control rounded-left" name="email" placeholder="Email" required>
+                </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control rounded-left" name="firstname" placeholder="Firstname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control rounded-left" name="lastname" placeholder="Lastname" required>
+                </div>
+                <div class="form-group">
+                    <select name="branch" class="form-control rounded-left" required>
+                        <option value="" disabled selected>Choose Branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="semester" class="form-control rounded-left" required>
+                        <option value="" disabled selected>Choose Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            <div class="form-group d-flex">
+              <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+            </div>
+           <a href="/student_login"><h6 class="text-center">Already registered?</h6></a>
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Register</button>
+            </div>
+          </form>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <form action="/student_register" method="POST">
+            {% csrf_token %}
+            <label for="Enrollment">Enrollment</label>&nbsp;
+            <input type="text" name="enrollment" placeholder="Enter Enrollment No."><br><br>
+            <label for="FirstName">First Name</label>&nbsp;
+            <input type="text" name="firstname" placeholder="Enter First Name"><br><br>
+            <label for="LastName">Last Name</label>&nbsp;
+            <input type="text" name="lastname" placeholder="Enter Last Name"><br><br>
+            <label for="Semester">Semester</label>&nbsp;
+            <input type="number" name="semester" placeholder="Enter Semester"><br><br>
+            <label for="Branch">Branch</label>&nbsp;
+            <input type="text" name="branch" placeholder="Enter Branch"><br><br>
+            <label for="Password">Password</label>&nbsp;
+            <input type="password" name="password" placeholder="Enter Password"><br><br>
+            <input type="submit" value="Register">
+        </form>
+    </center>
+</body>
+</html>
+-->

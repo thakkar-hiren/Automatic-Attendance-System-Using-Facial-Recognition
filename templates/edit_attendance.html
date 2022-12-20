@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{%block title%}
+Edit Attendance
+{%endblock%}
+{% url "edit" as baseURL %}
+{% block content %}
+<section class="ftco-section p-5 ">
+    {% if edit == False %}
+        <div class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-o"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Edit Attendance</h3>
+                        <form action="/edit_attendance/{{FacultyName}}" method="POST" class="login-form">
+                            {% csrf_token%}
+                            {% if success %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>{{success}}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </div>
+                            {%endif%}
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="enrollment"
+                                    placeholder="Enrollment" required>
+                            </div>
+                            <div class="form-group ">
+                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Search </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if va == True %}
+        <div class="container">
+            <div class="text-center  my-auto mb-2">
+                <h2>Edit Attendance</h2>
+            </div>
+            <table class="table table-striped text-center" style="font-size: 16px;">
+                <thead class="thead-dark" style="background-color: #884d8b;">
+                  <tr>
+                    <th scope="col">Enrollment</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Lab/Class</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list %}
+                  <tr>
+                    <th scope="row">{{ enr }}</th>
+                    <td>{{subject}}</td>
+                    <td>{{branch}}</td>
+                    <td>{{semester}}</td>
+                    <td>{{lab_or_class}}</td>
+                    <td>{{status}}</td>
+                    <td>{{date_today}}</td>
+                    <td>{{period}}</td>
+                    <td><a href="{{baseURL}}/edit/{{ enr }}&{{ date_today}}&{{period}}"><input type="submit" class="btn btn-primary" value="EDIT"></a></td>
+                  </tr>
+                {%endfor%}
+                </tbody>
+              </table>
+        </div>
+        <!-- <div class="container-table100 pt-0" style="background-color: lightpink;">
+            <div class="wrap-table100 m-0 pt-0 p-0" style="background-color: limegreen;">
+                <div class="text-center mb-2">
+                    <h3> Edit Attendance </h3>   
+                </div>
+                <div class="table100 ver1 m-b-110">
+                    <div class="table100-head">
+                        <table>
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">Enrollment<th>
+                                    <th class="cell100 column2">Subject</th>
+                                    <th class="cell100 column3">Branch</th>
+                                    <th class="cell100 column4">Semester</th>
+                                    <th class="cell100 column5">Lab/Class</th>
+                                    <th class="cell100 column6">Status</th>
+                                    <th class="cell100 column7">Date</th>
+                                    <th class="cell100 column8">Period</th>
+                                    <th class="cell100 column9">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+    
+                    <div class="table100-body js-pscroll">
+                        <table>
+                            <tbody>
+                                {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list %}
+                                <tr class="row100 body">
+                                    <td class="cell100 column1">{{ enr }}</td>
+                                    <td class="cell100 column2">{{ subject }}</td>
+                                    <td class="cell100 column3">{{ branch }}</td>
+                                    <td class="cell100 column4">{{ semester }}</td>
+                                    <td class="cell100 column5">{{ lab_or_class }}</td>
+                                    <td class="cell100 column6">{{ status }}</td>
+                                    <td class="cell100 column7">{{ date_today }}</td>
+                                    <td class="cell100 column8">{{ period }}</td>
+                                    <td class="cell100 column9"><a href="edit/{{ enr }}&{{ date_today}}&{{period}}"><input type="submit" class="btn btn-primary" value="EDIT"></a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        {%endif%}
+    {%else%}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <span class="fa fa-user-o"></span>
+                    </div>
+                    <h3 class="text-center mb-4">Edit Attendance</h3>
+                    {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list%}
+                        <form action="/edit/{{ enr }}&{{ date_today}}&{{period}}" method="POST" class="login-form">
+                            {% csrf_token%}
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="enrollment" value="{{enr}}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="subject" value="{{ subject }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="branch" value="{{ branch }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="semester" value="{{ semester }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="date" value="{{ date_today }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" name="period" value="{{ period }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control rounded-left" name="lab_or_class" required>
+                                    <option 
+                                    {% if lab_or_class == 'Lecture' %}
+                                        selected
+                                    {% endif %}>
+                                    Lecture</option>
+                                    <option 
+                                    {% if lab_or_class == 'Lab' %}
+                                        selected
+                                    {% endif %}>
+                                    Lab</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="status" required>
+                                    <option
+                                    {%if status == "Present" %}
+                                        selected
+                                    {% endif %}>Present</option>
+                                    <option
+                                    {%if status == "Absent" %}
+                                        selected
+                                    {% endif %}>Absent</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5 "> Update </button>
+                            </div>
+                        </form>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+</section>
+{% endblock %}
+    <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Attendance</title>
+</head>
+<body>
+    {% if edit == False %}
+    <center>
+        <h1 style="font-family: sans-serif;">Search Attendance</h1><br><br>
+        <form action='/edit_attendance' method="POST">
+            {% csrf_token %}
+            <label>Enrollment</label>
+            <input type="text" name='enrollment' placeholder="Enter Enrollment No."><br><br>
+            <input type="submit" value="Search">
+        </form><br>
+        {% if va == True %}    
+            <h1>Attendance</h1>
+            <table style="border:12pt;">
+                <thead>
+                    <tr>
+                        <th>Enrollment</th>
+                        <th>Subject</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Lab/Class</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Period</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list %}
+                    <tr>
+                        <td>{{ enr }}</td>
+                        <td>{{ subject }}</td>
+                        <td>{{ branch }}</td>
+                        <td>{{ semester }}</td>
+                        <td>{{ lab_or_class }}</td>
+                        <td>{{ status }}</td>
+                        <td>{{ date_today }}</td>
+                        <td>{{ period }}</td>
+                        <td><a href="edit/{{ enr }}&{{ date_today}}&{{period}}"><input type="submit" value="EDIT"></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}    
+    {%else%}
+    <center>    
+        <h1>
+            Edit
+        </h1>
+        {% for enr,subject,branch,semester,lab_or_class,status,date_today,period in zip_list%}
+            <form action='/edit/{{ enr }}&{{ date_today}}&{{period}}' method='POST'>
+                {% csrf_token %}
+            <label>Enrollment</label>
+            <input type="text" name='enrollment' value="{{enr}}" readonly><br><br>
+            <label>Subject</label>
+            <input type="text" name='subject' value="{{subject}}" readonly><br><br>
+            <label>Branch</label>
+            <input type="text" name='branch' value="{{branch}}" readonly><br><br>
+            <label>Semseter</label>
+            <input type="text" name='semester' value="{{semester}}" readonly><br><br>
+            <label>Date</label>
+            <input type="text" name='date' value="{{date_today}}" readonly><br><br>
+            <label>Period</label>
+            <input type="text" name='period' value="{{period}}" readonly><br><br>
+            <label>Lab/Lecture</label>
+            <select class="form-control" name="lab_or_class">
+                <option 
+                {% if lab_or_class == 'Lecture' %}
+                    selected
+                {% endif %}>
+                Lecture</option>
+                <option 
+                {% if lab_or_class == 'Lab' %}
+                    selected
+                {% endif %}>
+                Lab</option>
+            </select><br><br>
+            <label>Status</label>
+            <select class="form-control" name="status">
+                <option
+                {%if status == "Present" %}
+                    selected
+                {% endif %}>Present</option>
+                <option
+                {%if status == "Absent" %}
+                    selected
+                {% endif %}>Absent</option>
+            </select><br><br>
+        {% endfor %}
+            <input type="submit" value="Update">
+        </form>
+        </center>
+    {% endif %}
+    </center>
+</body>
+</html> -->

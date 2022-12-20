@@ -1,0 +1,706 @@
+{% extends "base.html" %}
+{% load static %}
+{%block title%}
+Home
+{%endblock%}
+{% block content %}
+<style>
+  /* Challenge Section*/
+  .cl-12,
+  .cm-6,
+  .cl-8,
+  .cs-5,
+  .cs-2,
+  .cs-1,
+  .cxs-6 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .hd.lg {
+    margin-top: 1em;
+    font-size: 3em;
+  }
+
+  .hd {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    clear: both;
+  }
+
+  .r {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .ct:after,
+  .ct:before,
+  .r:after,
+  .r:before {
+    display: table;
+    content: " ";
+  }
+
+  *,
+  :after,
+  :before {
+    box-sizing: inherit;
+  }
+
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }
+
+  .bg-gray {
+    background: #f7f7f7;
+  }
+
+  p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+    font-weight: 400;
+    color: #666;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  p.md {
+    font-size: 1.25em;
+  }
+
+  p.sm {
+    font-size: 1em;
+  }
+
+  img.hl {
+    border: 10px solid #fff;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 16%);
+  }
+
+  img {
+    border-style: none;
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+
+  .gperi-attendance .input,
+  .gperi-attendance .output {
+    max-width: 100px;
+    max-height: 50px;
+    margin: auto;
+  }
+
+  .gperi-attendance .path.inner {
+    margin-top: 30px;
+  }
+
+  .gperi-attendance .path {
+    margin-top: 90px;
+  }
+
+  .path {
+    margin-top: 150px;
+    border-top: 3px dashed #f2f2f2;
+    background: none;
+  }
+
+  hr {
+    margin: 40px 0;
+    border-top: 1px solid #f2f2f2;
+  }
+
+  hr {
+    box-sizing: content-box;
+    height: 0;
+  }
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+  }
+
+  /*section {
+    display: block;
+  }*/
+
+  ul.md {
+    font-size: 1.25em;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ul {
+    color: #666;
+    line-height: 2em;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    margin: 0 !important;
+  }
+
+  /*div {
+    display: block;
+  } */
+
+  .ct {
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .cl-6 {
+    width: 50%;
+  }
+
+  /* body {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  */
+
+  .ac {
+    text-align: center;
+  }
+
+  hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+  }
+
+  .bg-primary {
+    background: gray;
+  }
+
+  @media (min-width: 1200px) {
+    .ct {
+      width: 1170px;
+    }
+
+    .cl-push-2 {
+      left: 16.66666667%;
+    }
+
+    .cl-8 {
+      width: 66.66666667%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ct {
+      width: 738px;
+    }
+
+    .cs-5 {
+      width: 41.66666667%;
+    }
+
+    .cs-2 {
+      width: 16.66666667%;
+    }
+
+    section {
+      padding: 50px 0;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .ct {
+      width: 962px;
+    }
+  }
+
+  .bg-gray .card {
+    align-items: center;
+  }
+
+  .bg-gray .card-title {
+    font-weight: bold;
+  }
+
+  .bg-gray .card img {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: calc(0.25rem - 1px);
+  }
+
+  .bg-gray .card {
+    flex-direction: row;
+  }
+
+  .bg-gray .card img {
+    margin-left: 5px;
+    padding-left: 5px;
+    height: 12%;
+    width: 12%;
+  }
+
+  .header-text {
+    position: absolute;
+    top: 70%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #fff;
+  }
+
+  .header-text h2 {
+    font-size: 40px;
+  }
+
+  .header-text h2 span {
+    padding: 10px;
+    font-weight: bolder;
+  }
+
+  .header-text h3 span {
+    color: white;
+    padding: 15px;
+    font-weight: bolder;
+  }
+
+  /* Footer */
+  .footer {
+    background: #303036;
+    color: #d3d3d3;
+    height: 400px;
+    position: relative;
+  }
+
+  .footer .footer-content {
+    height: 350px;
+    display: flex;
+  }
+
+  .footer .footer-content .footer-section {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .footer .footer-content .about .socials a {
+    border: 1px solid gray;
+    width: 45px;
+    height: 41px;
+    padding-top: 3px;
+    margin-right: 4px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3em;
+    border-radius: 5px;
+    color: whitesmoke;
+    transition: all .3s;
+  }
+
+  .footer .footer-content .about .socials a:hover {
+    border: 1px solid white;
+    color: white;
+    transition: all .3s;
+  }
+
+  .footer .footer-content .links ul a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    transition: all .3s;
+  }
+
+  .footer .footer-content .links ul a:hover {
+    color: white;
+    margin-left: 10px;
+    transition: all .3s;
+  }
+
+  .footer .footer-bottom {
+    background: #343a40;
+    color: #686868;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 12px;
+  }
+</style>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" style=" width:100%; height: 600px !important;">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'images/banner_0.jpg' %}" alt="First slide" style="opacity:0.9">
+      <div class="header-text hidden-xs">
+        <div class="col-md-12 text-center">
+          <h2>
+            <span style="color: whitesmoke;"> Welcome to <strong>DAIICT Attendance</strong></span>
+          </h2>
+          <h3>
+            <span>Face recognition attendance system to reduce time.</span>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'images/banner_2.jpg' %}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'images/banner_3.jpg' %}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<section>
+  <div class="ct">
+    <div class="r">
+      <div class="col-12">
+        <h3 class="hd lg">
+          The &nbsp;<span style="color: lightskyblue;">Challenge</span>
+        </h3>
+        <ul class="md">
+          <li>Manual attendance is tedious and time consuming.</li>
+          <li>Teachers spend their precious teaching time in administrative tasks.</li>
+          <li>It is inherently vulnerable to proxies and manual errors.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-gray">
+  <div class="ct">
+    <div class="r">
+      <div class="cl-12">
+        <h3 class="hd lg">
+          The &nbsp;<span style="color: lightskyblue;">Solution</span>
+        </h3>
+        <p></p>
+        <div class="r">
+          <div class="cm-6">
+            <p class="md">
+              DAIICT Attendance is an AI powered face recognition solution which uses Computer Vision and Machine
+              Learning algorithms to mark the attendance of the students of the Institute.
+            </p>
+            <p class="md">
+              The system will work on face recognition where each student in the class will be photographed and their
+              details will be stored in a server. The faculty can then record the attendance by just adding some details
+              of class.
+              On just one click CCTV camera of the class will take video frame of class.
+              The system will recognize the faces and verify the presence or absence of each student.
+            </p>
+          </div>
+          <div class="cm-6">
+            <img src="{%static 'images/attendance.jpg'%}" class="hl lazy" alt="DAIICT Attendance">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="ct">
+    <div class="r">
+      <div class="cl-8 cl-push-2">
+        <h3 class="hd lg ac">
+          How it &nbsp;<span style="color: lightskyblue;">Works</span>
+        </h3>
+        <p class="md">
+          The system works on face recognition where each student in the class is photographed and their details are
+          stored in a dataset. The teacher can then record the attendance by inserting class details. On a single click
+          the system will recognize the faces and verify the presence or absence of each student. Students can view
+          their attendance through DAIICT Attendance Portal.
+        </p>
+      </div>
+    </div>
+    <!-- <div class="r ac gperi-attendance">
+      <div class="cs-5">
+        <div class="r">
+          <h3 class="ac">Input</h3>
+          <div class="cs-5 cxs-6">
+            <img src="{%static 'images/input1.svg'%}" alt="input1" class="input lazy">
+            <p></p>
+            <p class="sm"> Live images of students in the classroom</p>
+          </div>
+          <div class="cs-2 hide-s">
+            <hr class="path inner">
+          </div>
+          <div class="cs-5 cxs-6">
+            <img src="{%static 'images/input2.svg'%}" alt="input2">
+            <p></p>
+            <p class="sm">Capture the live video frame</p>
+          </div>    
+        </div>
+      </div>
+      <div class="cs-1 hide-s">
+        <hr class="path">
+      </div>
+      <div class="mb-dots-b"></div>
+      <div class="mb-dots"></div>
+      <div class="cs-2">
+        <div class="engine">
+          <img src="{%static 'images/output1.png'%}" alt="output1" class="lazy">
+          <p></p>
+          <p>GPERI Attendance</p>
+        </div>
+      </div>
+      <div class="cs-1 hide-s">
+        <hr class="path">
+      </div>
+      <div class="cs2">
+        <h3>Output</h3>
+        <p>
+          <img src="{%static 'images/output2.svg'%}" alt="output" class="output lazy">
+        </p>
+        <p class="sm">
+          Attendance of the students are marked as present or absent
+        </p>
+      </div> -->
+  </div>
+</section>
+<section class="bg-gray">
+  <div class="container">
+    <div class="r">
+      <div class="cl-8 cl-push-2">
+        <h3 class="hd lg ac">
+          What are &nbsp;<span style="color: lightskyblue;">Benefits</span>
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/proxy.svg'%}" alt="">
+
+          <div class="card-body mb-4">
+            <h5 class="card-title">Tackle Proxy</h5>
+            <p class="card-text">
+              With face recognition in place, students can’t mark proxy attendance.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/efforts.svg'%}" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title">Reduce Efforts</h5>
+            <p class="card-text">
+              This system allows teachers and admins to record attendance of the entire class using just a
+              smartphone or laptop, reducing both time and effort.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/error.svg'%}" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title">Eliminate Human Error</h5>
+            <p class="card-text">
+              Based on artificial intelligence, this system will completely eliminate any chances of human error. The
+              system is equipped with face detection and recognition algorithms, making it completely
+              foolproof.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/productivity.svg'%}" alt="">
+
+          <div class="card-body mb-4">
+            <h5 class="card-title">Increase Productivity</h5>
+            <p class="card-text">
+              With admin work taken care of, teachers and admins can focus on more productive work rather than
+              maintaining attendance records.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/hardware.png'%}" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title">Hardware Efficient</h5>
+            <p class="card-text">
+              Can process images captured from any hand-held device, even a low-cost smartphone as long as it can
+              capture videos
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="card border-info">
+          <img class="card-img-top" src="{%static 'images/ai-based.svg'%}" alt="">
+
+          <div class="card-body mb-4">
+            <h5 class="card-title">AI-Based</h5>
+            <p class="card-text">
+              The system is equipped with machine learning algorithm making it foolproof.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="r">
+      <div class="cl-8 cl-push-2">
+        <h3 class="hd lg ac">
+          The &nbsp;<span style="color: lightskyblue;">Conclusion</span>
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card text-center" style="background: lightblue;">
+          <img class="card-img-top mt-4 " src="{% static 'images/resource.svg'%}" alt=""
+            style="width: 12%; height:12%; margin:auto">
+
+          <div class="card-body  pt-2 mb-4">
+            <h5 class="card-title">Save Resources</h5>
+            <p class="card-text pt-0">
+              Saves cost for 1 resource per month.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="background: lightblue;">
+          <img class="card-img-top mt-4 " src="{% static 'images/time.svg'%}" alt=""
+            style="width: 12%; height:12%; margin:auto">
+
+          <div class="card-body pt-2">
+            <h5 class="card-title">Saves Time</h5>
+            <p class="card-text pt-0">
+              Saves approx 2 hours per day per college.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="background: lightblue;">
+          <img class="card-img-top mt-4 " src="{% static 'images/cost.png'%}" alt=""
+            style="width: 12%; height:12%; margin:auto">
+
+          <div class="card-body pt-2 mb-4">
+            <h5 class="card-title">Low Cost</h5>
+            <p class="card-text">
+              No extra infrastructure required.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h2><span style="color: darkgray;">DAIICT</span> <span style="color: lightskyblue;">Attendance</span></h2>
+      <p>
+        DAIICT Attendance is a facial recongition based attendance system.
+        It is built using advanced facial recognition algorithm.
+      </p>
+      <div class="socials">
+        <a href="https://www.facebook.com/daiict/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/daiictofficial/?hl=en"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a
+          href="https://www.linkedin.com/school/dhirubhai-ambani-institute-of-information-and-communication-technology/"><i
+            class="fa fa-linkedin" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h2><span style="color: darkgray;">Quick Links</span></h2>
+
+      <ul>
+        <!-- <li><a href="http://moodle.gperi.ac.in/" target="_blank" style="color: lightgray;">Moodle</a></li> -->
+        <li><a href="student_login" target="_blank" style="color: lightgray;">Student</a></li>
+        <li><a href="faculty_login" target="_blank" style="color: lightgray;">Faculty</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contactus">
+      <h2><span style="color: darkgray;">Contact us</span></h2>
+      <div class="details">
+        <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp; info@daiict.ac.in</p>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; DA-IICT, Near Indroda Circle,
+        Gandhinagar 382 007, Gujarat (India).</p>
+        <p><span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp; (+91) 079 - 6826 1700</span></p>
+      </div>
+    </div>
+    <!-- <div class="footer-section directions">
+      <h2><span style="color: darkgray;">Directions</span></h2>
+      <iframe
+        src="https://www.google.com/maps/dir/DA-IICT,+Daiict+college,+Reliance+Cross+Rd,+Gandhinagar,+Gujarat+382007/DA-IICT+%E0%AA%A7%E0%AB%80%E0%AA%B0%E0%AB%81%E0%AA%AD%E0%AA%BE%E0%AA%88+%E0%AA%85%E0%AA%82%E0%AA%AC%E0%AA%BE%E0%AA%A3%E0%AB%80+%E0%AA%87%E0%AA%A8%E0%AB%8D%E0%AA%B8%E0%AB%8D%E0%AA%9F%E0%AA%BF%E0%AA%9F%E0%AB%8D%E0%AA%AF%E0%AB%82%E0%AA%9F+%E0%AA%93%E0%AA%AB%E2%80%A6/@23.1885316,72.5877157,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x395c2a3c9618d2c5:0xc54de484f986b1fa!2m2!1d72.6289155!2d23.188537!1m5!1m1!1s0x395c2a3c9618d2c5:0xc54de484f986b1fa!2m2!1d72.6289155!2d23.188537"
+        style="border:0" allowfullscreen></iframe>
+    </div>
+  </div> -->
+  <div class="footer-bottom">
+    &copy; daiictattendance.com | Designed by Brain Hackers, 2022.
+  </div>
+</div>
+{% endblock %}
+</body>
+</html>
+<!-- <footer id="sticky-footer" class="py-3 bg-dark text-white-50">
+  <div class="container text-center">
+    <small>Copyright &copy; 2021 : Brain Hackers</small>
+  </div>
+</footer> -->

@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{%block title%}
+Take Attendance
+{%endblock%}
+{% block content %}
+{% if ta == False %}
+    <section class="ftco-section p-5 ">
+        <div class="container m-auto">
+            <div class="row justify-content-center pt-4">
+                <div class="col-md-4 text-center mb-2">
+                    <h2 class="heading-section">Take Attendance</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5 ">
+                    <div class="login-wrap p-2 p-md-5 ">
+                <div class="icon d-flex align-items-center justify-content-center mb-4 mt-0 pt-0">
+                    <i class="fa fa-calendar-check-o" style="color: white;" aria-hidden="true"></i>
+                </div>
+                        <form action="/takeattendance/{{FacultyName}}/{{Branch}}" method="POST" class="login-form">
+                            {% csrf_token%}
+                            {% if message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{message}}
+                            </div>
+                            {% endif %}
+                    <div class="form-group">
+                        <select name="subject" id="" class="form-control" required>
+                            <option value="" disabled selected>--Choose Subject--</option>
+                            {% for sub in subject %}
+                                <option value="{{sub}}">{{sub}}</option>    
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="semester" id="" class="form-control" required>
+                            <option value="" disabled selected>--Choose Semester--</option>
+                            {% for sem in semester%}    
+                                <option value="{{sem}}">{{sem}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="lab_or_class" required>
+                            <option>Lecture</option>
+                            <option>Lab</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="period" required>
+                            <option value="" disabled selected>----Choose Period----</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
+                    </div>
+                <div class="form-group d-flex">
+                    <select class="form-control" name="branch">
+                        <option>{{Branch}}</option>
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary rounded submit p-3 px-5 ">Take Attendance</button>
+                </div>
+            </form>
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%else%}
+    <div class="limiter">
+        <div class="container-table100">
+			<div class="wrap-table100">
+                <div class="text-center mb-2">
+                    <h1 class="display-4">Today's Attendance</h1> 
+                </div>
+                {% if message %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+                {%endif%}
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Enrollment</th>
+									<th class="cell100 column2">Subject</th>
+									<th class="cell100 column3">Semester</th>
+									<th class="cell100 column4">Branch</th>
+									<th class="cell100 column5">Date</th>
+									<th class="cell100 column6">Period</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+                                {%for name in names %}
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1">{{ name }}</td>
+                                        <td class="cell100 column2">{{ subject }}</td>
+                                        <td class="cell100 column3">{{semester}}</td>
+                                        <td class="cell100 column4">{{ branch }}</td>
+                                        <td class="cell100 column5">{{ date }}</td>
+                                        <td class="cell100 column6">{{ period }}</td>
+                                    </tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+            </div>
+        </div> 
+    </div>     
+{%endif%}
+{% endblock %}
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <center>
+    {% if ta == False %}  
+        <h1 style="font-family:sans-serif">Take Attendance</h1>
+        {%if message %}
+        <div class="alert alert-danger">
+            <strong>Attendance Already Taken!</strong> .
+          </div>
+        {%endif%}
+        <div class="container">
+            <form action='/takeattendance/{{facultyname}}/{{Branch}}' method="POST">
+                {% csrf_token %}
+                <select name="subject" id="">
+                    <option value="" disabled selected>--Choose Subject--</option>
+                    {% for sub in subject %}
+                        <option value="{{sub}}">{{sub}}</option>    
+                    {% endfor %}
+                    </select><br><br>
+                <select name="semester" id="">
+                    <option value="" disabled selected>--Choose Semester--</option>
+                    {% for sem in semester%}    
+                        <option value="{{sem}}">{{sem}}</option>
+                    {% endfor %}
+                    </select><br><br>
+                <select class="form-control" name="lab_or_class">
+                    <option>Lecture</option>
+                    <option>Lab</option>
+                </select><br><br>
+                <select class="form-control" name="period">
+                <option value="" disabled selected>----Choose Period----</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select><br><br>
+                <select class="form-control" name="branch">
+                    <option>{{Branch}}</option>
+                </select><br><br>
+                <input type="submit" class="btn btn-outline-primary" value="Take Attendance">
+            </form>
+        </div>
+    {%else%}
+    <div class="container">
+        <h1 style="font-family: sans-serif;">Today's Attendance</h1>
+        <table class="table table-striped my-6">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Enrollment</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Date</th>
+                <th scope="col">Period</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for name in names %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ subject }}</td>
+                <td>{{semester}}</td>
+                <td>{{ branch }}</td>
+                <td>{{ date }}</td>
+                <td>{{ period }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {%endif%}    
+</center>
+</body>
+</html>
+-->
